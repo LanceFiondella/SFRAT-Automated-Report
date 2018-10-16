@@ -60,7 +60,7 @@ Email: @}}
 \maketitle
 
 \begin{abstract}
-This paper demonstrates the utility of a script to automatically apply a free and open source software failure and reliability assessment tool. The script generates a pdf report, thus eliminates the need to work with the graphical user interface of the tool to manually assess the data and report. The reports can be used to summarize progress to technical and non-technical leadership. Simplifying the assessment and reporting may thus encourage the software and reliability practitioners to apply the models and make decisions about the process.
+This paper demonstrates the utility of a script to automatically apply a free and open source software failure and reliability assessment tool. The script generates a pdf report, eliminating the need to work with the user interface of the tool to manually assess the data and report. The reports can be used to summarize progress to both technical and non-technical leadership. Simplifying the assessment and reporting may encourage the software and reliability practitioners to apply the models and make decisions about the process.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -69,7 +69,7 @@ Software reliability, software reliability growth model, R statistical programmi
 
 
 \section{Introduction}\label{sec:Intro}
-Software reliability growth models (SRGM)~\cite{BookHoSRE} are extremely useful in assisting the software and reliability practitioners to make practical decisions about the software by characterizing the failure data collected during testing. Some of the predictions enabled by SRGM include remaining number of failures, failure intensity, mean time to failure, release time as well as software reliability. However practitioners are reluctant to apply these models due to lack of either the knowledge of the underlying mathematics or the time to develop expertise and implement models in their work. Therefore, several computer-aided software reliability tools~\cite{trSMERFS,inProcISSRE2013_100,lyu1992casre} were developed in the past.
+Software reliability growth models (SRGM)~\cite{BookHoSRE} are extremely useful in making decisions about software development by characterizing failure data collected during testing. Some of the predictions featured by SRGM include the remaining number of failures, failure intensities, mean time to failures, release time, as well as overall software reliability. However, practitioners may be reluctant to apply these models due to a lack of either the knowledge of the underlying mathematics or the time to develop expertise and implement models in their work. Therefore, several computer-aided software reliability tools~\cite{trSMERFS,inProcISSRE2013_100,lyu1992casre} have been developed.
 
 Previous computer-aided tools to apply software reliability methods include: Emerald~\cite{1996hudepohlemerald}, SRMP (Software Reliability Modeling Programs)~\cite{1988SRMP}, the AT\&T SRE Toolkit~\cite{1990ATT}, SoRel~\cite{1993kanounsorel}, SMERFS (Statistical Modeling and Estimation of Reliability Functions for Software)~\cite{trSMERFS}, and CASRE (Computer Aided Software Reliability Estimation)~\cite{lyu1992casre}, Robust~\cite{1995lirobust}, SREPT~\cite{2000ramanisrept}, CARATS~\cite{2011huangestimation}, SRATS~\cite{inProcISSRE2013_100}, and M-SRAT~\cite{2015shibatam}. Most of these tools are mostly spreadsheet based~\cite{inProcISSRE2013_100} or close source in nature. This inhibits the capability to integrate the existing tools into software testing work flows and update the tools with recent changes in the software reliability research. To overcome the limitation of existing tools, an open source Software Failure and Reliability Assessment Tool (SFRAT)~\cite{cFio53} is developed with a flexible architecture to accommodate individual researchers models as well as methods.
 
@@ -79,7 +79,7 @@ The remainder of the paper is organized as follows: Section~\ref{sec:SFRAT} prov
 
 
 \section{Software Failure and Reliability Assessment Tool (SFRAT)}\label{sec:SFRAT}
-The Software Failure and Reliability Assessment Tool is a free and open source tool developed to promote quantitative assessment of software reliability and improved communication between organizations acquiring software and those conducting development and test. SFRAT is an application to estimate and predict the reliability of a software system during test and operation. Some of the questions the tool answer about a software system undergoing test are:
+The Software Failure and Reliability Assessment Tool is a free and open source tool developed to promote quantitative assessment of software reliability and improved communications regarding such software. SFRAT is an application that estimates and predicts the reliability of a software system during test and operation. Some of the questions that the tool answer about a software system undergoing test are:
 \begin{itemize}
 \item {Is the software reliable enough to release?}
 \item {How long will it be before a specified goal is reached?}
