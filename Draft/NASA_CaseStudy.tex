@@ -73,24 +73,24 @@ Software reliability growth models (SRGM)~\cite{BookHoSRE} are extremely useful 
 
 Previous computer-aided tools to apply software reliability methods include: Emerald~\cite{1996hudepohlemerald}, SRMP (Software Reliability Modeling Programs)~\cite{1988SRMP}, the AT\&T SRE Toolkit~\cite{1990ATT}, SoRel~\cite{1993kanounsorel}, SMERFS (Statistical Modeling and Estimation of Reliability Functions for Software)~\cite{trSMERFS}, and CASRE (Computer Aided Software Reliability Estimation)~\cite{lyu1992casre}, Robust~\cite{1995lirobust}, SREPT~\cite{2000ramanisrept}, CARATS~\cite{2011huangestimation}, SRATS~\cite{inProcISSRE2013_100}, and M-SRAT~\cite{2015shibatam}. Most of these tools are mostly spreadsheet based~\cite{inProcISSRE2013_100} or close source in nature. This inhibits the capability to integrate the existing tools into software testing work flows and update the tools with recent changes in the software reliability research. To overcome the limitation of existing tools, an open source Software Failure and Reliability Assessment Tool (SFRAT)~\cite{cFio53} is developed with a flexible architecture to accommodate individual researchers models as well as methods.
 
-In this paper, we present a script to automatically apply an open source SFRAT and generate report. This script eliminates the need to work with graphical user interface to manually prepare the report, thus conserving time. The script can be configured to produce custom reports, for example, the user can opt to include explanation of each result in the report. The script generates a pdf to visually assess the data and to ease the reporting process. The reports can be used to summarize progress to technical and non-technical leadership.
+In this paper, we present a script to automatically apply an open source SFRAT and generate report. This script eliminates the need to work with the graphical user interface to manually prepare the report, thus conserving time. The script can be configured to produce custom reports; for example, the user can opt to include explanations of each result in the report. The script generates a pdf to visually assess the data and to ease the reporting process. The reports can then be used to summarize and visualize project status to both technical and non-technical leadership.
 
 The remainder of the paper is organized as follows: Section~\ref{sec:SFRAT} provides a brief overview of the SFRAT user interface and Section~\ref{sec:Script} provides a detailed discussion of the script to generate the report automatically. Section~\ref{sec:Ex} demonstrates the use of the script through a real data, while Section~\ref{sec:Concl} provides conclusion and directions for future research.
 
 
 \section{Software Failure and Reliability Assessment Tool (SFRAT)}\label{sec:SFRAT}
-The Software Failure and Reliability Assessment Tool is a free and open source tool developed to promote quantitative assessment of software reliability and improved communications regarding such software. SFRAT is an application that estimates and predicts the reliability of a software system during test and operation. Some of the questions that the tool answer about a software system undergoing test are:
+The Software Failure and Reliability Assessment Tool is a free and open source tool developed to promote quantitative assessment of software reliability as well as improved communications of such assessments. SFRAT is an application that estimates and predicts the reliability of a software system during test and operation. Some of the questions that the tool answers about a system undergoing test are:
 \begin{itemize}
 \item {Is the software reliable enough to release?}
 \item {How long will it be before a specified goal is reached?}
 \item {What will be the consequences if testing resources are insufficient?}
 \end{itemize}
 
-SFRAT is implemented in the R statistical programming language~\cite{}, an open source environment for statistical computing and graphics that can be used on computers running Windows, OS X, or Linux, with the user interface implemented using Shiny~\cite{}. The code is accessible on GitHub at \textit{https://github.com/LanceFiondella/srt.core}, which can be downloaded and run using RStudio~\cite{} to use the application locally. In doing so, an organization can easily perform information assurance of the code prior to use on sensitive failure data. For complete details, the reader is referred to \textit{http://sasdlc.org/lab/projects/srt.html}.
+SFRAT is implemented in the R statistical programming language~\cite{}, an open source environment for statistical computing and graphics that can be used on computers running Windows, OSX, or Linux, with the user interface implemented using the R Shiny library~\cite{}. The code is accessible on GitHub at \textit{https://github.com/LanceFiondella/srt.core}, which after downloading can be ran using RStudio or any other R environment. In doing so, an organization can easily perform information assurance of the code prior to use on sensitive failure data. For complete details, the reader is referred to \textit{http://sasdlc.org/lab/projects/srt.html}.
+%re-word sentence 3 below
+The architecture of the SFRAT combines the use of existing software reliability models into a single tool, enabling more systematic comparison of models than previously possible. Presently, data formats supported consist of inter failure time, failure time, and failure count. Functionality includes two trend tests for reliability growth, two failure rate~\cite{BookHoSRE}, Jelinski-Moranda and geometric, and three failure counting models, Goel-Okumoto~\cite{goel1985software}, delayed S-shaped~\cite{artTR1986_19}, and Weibull~\cite{artNHPPsurvey} models as well as two measures of goodness of fit. Also implemented are methods to predict time to reach a desired reliability as well as detecting a number of future failures. The free and open source nature of the tool architecture enables additional models and goodness of fit measures to be later implemented. In this regard, the tool is intended to serve as a shared environment for collaboration among researchers and practitioners.
 
-The architecture of the SFRAT enables incorporation of existing software reliability models into a single tool, enabling more systematic comparison of models than previously possible. Presently, inter failure time, failure time, and failure count data formats are supported. Functionality includes: two trend tests for reliability growth, two failure rate~\cite{BookHoSRE}, Jelinski-Moranda and geometric, and three failure counting models, Goel-Okumoto~\cite{goel1985software}, delayed S-shaped~\cite{artTR1986_19}, and Weibull~\cite{artNHPPsurvey} models as well as two measures of goodness of fit. Inferences such as the time to achieve a target reliability or detect a specified number of additional failures have also been implemented. The free and open source nature of the tool architecture enables additional models and goodness of fit measures to be included. In this regard, the tool is intended to serve as a shared environment for collaboration among researchers and practitioners.
-
-SFRAT can be accessed either by downloading the source code from GitHub and run using RStudio or through the web instance. Once the application is launched, the initial SFRAT screen is shown in Figure~\ref{fig_DefaultView}.
+SFRAT can be accessed by downloading the source code from GitHub and run using an R environment (e.g. RStudio), or through the web instance. Once the application is launched, the initial SFRAT screen is shown as seen in Figure~\ref{fig_DefaultView}.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\columnwidth]{Figures/DefaultView}
@@ -101,50 +101,50 @@ SFRAT can be accessed either by downloading the source code from GitHub and run 
 
 The SFRAT workflow is divided into four subtasks:
 \begin{itemize}
-\item{\textbf{Select, Analyze, and Filter Data}: Open a failure data history file and determine whether the data exhibits reliability growth that would justify model application.}
-\item{\textbf{Set Up and Apply Models}: Apply one or more software reliability models and view the results including reliability growth.}
+\item{\textbf{Select, Analyze, and Filter Data}: Import failure data history and determine model applicability of its reliability's growth.}
+\item{\textbf{Set Up and Apply Models}: View results of one or more reliability models, including reliability growth.}
 \item{\textbf{Query Model Results}: Query applied models to answer the following questions:
 \begin{itemize}
-\item{How many additional failures will be observed if testing is continued for an additional amount of time?}
-\item{How much additional time is required to observe a given number of additional failures?}
-\item{How much additional testing time will be needed to achieve a specified reliability goal (or has that goal already been achieved)?}
+\item{How many additional failures will occur during a continued period of testing?}
+\item{How much time would be required to observe a number of additional failures?}
+\item{At what point in testing will a reliability goal be reached?}
 \end{itemize}}
-\item{\textbf{Evaluate Models}: Compare the models with one another to determine which one is the most likely to characterize the data well and provide accurate predictions.}
+\item{\textbf{Evaluate Models}: By model comparison, determine which is most likely to proficiently characterize the data and provide accurate predictions.}
 \end{itemize}
 
 
 \subsection{Tab 1: Select, Analyze, and Filter Data}\label{tab1}
-Figure~\ref{fig_Tab1_leftCol} shows the options in the first tab, including file selection, data visualization, and trend test analysis. User can begin to use the tool by specifying the input file as either an Excel spreadsheet (.xlsx) or a CSV (comma separated value) (.csv) format. The input file must follow the format shown in Figure~\ref{fig_Excel_sys1}, where (FN) indicates failure number, (IF) interfailure time, and (FT) failure time.
+Figure~\ref{fig_Tab1_leftCol} shows the options in the first tab, which includes file selection, data visualization, and trend test analysis. The user can then use the tool by specifying the input file as either an Excel spreadsheet (.xlsx) or a CSV (comma separated value) (.csv) format. The input file must follow the format shown in Figure~\ref{fig_Excel_sys1}, where failure number(FN), interfailure time(IF), and failure time(FT) are indicated.
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=3.4in]{Figures/Fig2}
-\caption{Tab one options}
+\caption{Tab one view}
 \label{fig_Tab1_leftCol}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=1.8in]{Figures/sys1excel}
-\caption{Excel input file format}
+\caption{Example Excel input}
 \label{fig_Excel_sys1}
 \end{figure}
 
-Clicking on the \textbf{Choose File} button enables the user to browse and upload the input data file. The progress bar message ``Upload complete'' indicates a successful file upload. By default, a plot of the cumulative failures for the uploaded data set is displayed; Figure~\ref{fig_Tab1_CDF} shows the SYS1 data set~\cite{BookHoSRE}.
+Clicking on the \textbf{Browse...} button enables the user search for and upload the input data file. The progress bar message ``Upload complete'' will indicate a successful file upload. By default, a plot of the cumulative failures for the uploaded data set is displayed. For example, Figure~\ref{fig_Tab1_CDF} shows the SYS1 data set~\cite{BookHoSRE}.
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=3.4in, height=3in]{Figures/Fig4}
-\caption{Tab one after data upload}
+\caption{Tab one view after upload}
 \label{fig_Tab1_CDF}
 \end{figure}
 
 
-Below the progress bar, the user is able to choose a sheet from a dropdown menu listing the data sets. csv files can contain only one data set, while Excel files can contain one data set per sheet. Data sets that do not comply with the input format will not be available in the dropdown menu. During upload, the tool converts data into failure times, failure counts, and inter failure data formats regardless of the input format so that any model can be applied to any data set. $31$ data sets were taken from the Handbook of Software Reliability Engineering~\cite{BookHoSRE} and prepared in the file format. Of these, $10$ are failure time data and the remaining $21$ failure counts. This will enable more comprehensive comparison of models than ever before. Alternative data views include times between failures and failure intensity, which can be selected from the dropdown menu below the prompt to ``Choose a view of the failure data''. All plots can be drawn using either points, lines or both.
+From a drop-down menu below the progress bar, the user may choose from the provided data sets. CSV files may only contain only one data set, whereas Excel files will contain one data set per sheet. Data sets that do not comply with the input format will not be available in the dropdown menu. Regardless of the input's data format, the tool will provide conversions to failure time, failure count, and inter failure data formats upon upload, allowing for the use of any data model. $31$ data sets were taken from the Handbook of Software Reliability Engineering~\cite{BookHoSRE} and prepared in the file format. Of these, $10$ are failure time data and the remaining $21$ are failure counts. This enables a more comprehensive comparison between models than previously possible. Using the drop-down menu below ``Choose a view of the failure data'', the user may select an alternative data view, including failure intensities and the times between failures. In addition, the option exists to draw plots with either points, lines or both.
 
-The radio buttons \textbf{Data} and \textbf{Trend test} allow the user to switch between data and trend test plots. These trend tests have been placed before model fitting to ensure that the data exhibits reliability growth and it is therefore appropriate to apply software reliability models and make predictions. The two tests implemented include the Laplace trend test~\cite{gaudoin1992optimal} and running arithmetic average.
+Data and Trend test plotting is also possible by use of the radio buttons with the same labels. These trend tests have been placed before model fitting to ensure that the data exhibits reliability growth and is therefore appropriate for software reliability models and predictions. The two tests implemented include the Laplace trend test~\cite{gaudoin1992optimal} as well as a running arithmetic average.
 
-Figure~\ref{fig_Tab1_Laplace} shows the Laplace trend test of the SYS1 data set. The red line is a user specified input into the text box below the prompt to ``Specify the confidence level for the Laplace Test'' as shown in Figure~\ref{fig_Tab1_leftCol}. Here the value has been set to $0.9$ or $90\%$. Additional default levels in black include $90$, $95$, $99$, $99.9$, $99.9999$, and $99.999999$. Values below these lines indicate that the data exhibits reliability growth with the specified level of statistical significance and it is therefore suitable to apply software reliability models.
+Figure~\ref{fig_Tab1_Laplace} shows the Laplace trend test of the SYS1 data set. The red line seen is a user-specified input, entered into the text box just underneath the Laplace Test drop-down box, as shown in Figure~\ref{fig_Tab1_leftCol}. In this case, the value has been set to $0.9$ or $90\%$. Additional default levels in black include $90$, $95$, $99$, $99.9$, $99.9999$, and $99.999999$. Values below these lines indicate that the data exhibits reliability growth with the specified level of statistical significance and is therefore suitable to apply software reliability models.
 
 \begin{figure}[!h]
 \centering
