@@ -265,36 +265,35 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 \end{figure}
 
 
-\section{Automated script to generate SFRAT report}\label{sec:Script}
+\section{SFRAT report generation script}\label{sec:Script}
 %This section discusses the installation and input specifications of the script.
-Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data.
-The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of $532$ lines of code including comments and blank lines between each chunk. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} is a R Markdown file used to create reports in different formats, which contains $493$ lines of code. The \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report, which contains $39$ lines of code.
+Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data. The script is relatively easy to configure and will assign the user's settings to the SFRAT before running and documenting it, so that whatever specifications a user prefers may be easily added before generating the report.
+The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} file is a R Markdown file used to create reports in different formats, whereas the \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report.
 
 \subsection{Installation}\label{sec:ScriptInstall}
-An automated installation script is available from the GitHub repository at: https://github.com/LanceFiondella/SFRAT-Automated-Report/blob/master/installscript.R.
+An automated installation script is available from the GitHub repository at \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report}.
 
-The manual installation procedure is:
-\begin{itemize}
-  \item {Make sure that your platform is either 64-bit Windows 7 or later, Mac OS X 10.9 or later, or a version of Linux capable of running R Studio.}
-  \item {Perl 5 version 16 or later. Linux and Mac computers usually have this installed, however, for Windows machines Perl can be downloaded from: http://strawberryperl.com/}
-  \item{Install MikTex or any other equivalent latex text editor if you are working on Windows machine.}
+Requirements to install manually:
+\begin{itemize}%perhaps generalize this section into just R instead of Rstudio
+  \item {64-bit Windows 7 or later, Mac OS X 10.9 or later, or Linux capable of running R or R Studio.}
+  \item {Perl 5 version 16 or later. Linux and Mac systems may already have this installed, for Windows machines Perl can be downloaded from: http://strawberryperl.com/}
+  \item{Install MikTex or any other equivalent latex text editor if you are running Windows.}
   \item {Install R and RStudio on your machine. You can download both RStudio and R at \textit{rstudio.com}. For Windows, Mac OS X, and Linux, you will need version R version 3.0 or later and RStudio 0.99.482 or later.
-      \begin{itemize}
-        \item {R (https://cran.r-project.org/) needs to be installed before RStudio can be installed. Once RStudio has been installed, the following packages need to be installed.
+  \item {R (https://cran.r-project.org/) needs to be installed before RStudio can be installed. Once RStudio has been installed, the following packages need to be installed:
         \begin{itemize}
-          \item {\textbf{shiny} – is a web application framework for R.}
-          \item {\textbf{gdata} – is a package that provides various R programming tools for data manipulation.}
-          \item {\textbf{ggplot} – is a graphical package, which offers a powerful graphics language for creating elegant and complex plots.}
-          \item {\textbf{DT} – is a package that provides an R interface to the JavaScript library DataTables.}
-          \item {\textbf{rootSolve} – is a package to find the roots of n nonlinear (or linear) equations.}
-          \item {\textbf{knitr} – is a package that provides a general-purpose tool for dynamic report generation in R using Literate Programming techniques.}
-          \item {\textbf{rmarkdown} – is a package that includes high level functions for converting R Markdown documents into a variety of formats including HTML, MS Word PDF, and Beamer.}
-          \item {\textbf{markdown} - is a package for authoring HTML, PDF, and MS Word documents.}
-          \item {\textbf{readxl} - is a package to import excel files.}
-          \item {\textbf{formatR} - is a package designed to reformat R code to improve readability.}
+          \item {\textbf{shiny}, a web application framework for R}
+          \item {\textbf{gdata}, a package providing data manipulation tools}
+          \item {\textbf{ggplot}, a graphical package capable of creating elegant and complex plots}
+          \item {\textbf{DT}, a package providing an R interface to the JavaScript library DataTables}
+          \item {\textbf{rootSolve}, a package used to find the roots of n nonlinear (or linear) equations}
+          \item {\textbf{knitr}, a package providing a general-purpose tool for dynamic report generation in R using Literate Programming techniques}
+          \item {\textbf{rmarkdown}, a package allowing converting R Markdown documents into a variety of formats including HTML, MS Word PDF, and Beamer}
+          \item {\textbf{markdown}, a package for authoring HTML, PDF, and MS Word documents}
+          \item {\textbf{readxl}, a package to import excel files}
+          \item {\textbf{formatR}, a package designed to reformat R code to improve readability}
         \end{itemize}
-        }
-        \item {You can also install the packages using the “Install packages…” menu item in RStudio’s “Tools” menu. This will bring up the dialog box as shown in Figure~\ref{fig:InstallPackages}:
+        } 
+        \item {These packages can be installed via the "Install packages..." option in RStudio's "Tools" menu, as shown in Figure~\ref{fig:InstallPackages}:
         \begin{figure}[!h]
         \centering
         \includegraphics[width=3.4in]{Figures/InstallPackages}
@@ -302,9 +301,7 @@ The manual installation procedure is:
         \label{fig:InstallPackages}
         \end{figure}
 
-        \noindent Specify the package(s) you want to install in the first line of the dialog box. It is not necessary to change the installation location, so just leave the second line alone. Make sure that the ``Install dependencies'' box is checked – if not, the packages you install may not work the way they should.
-        }
-      \end{itemize}
+        \noindent Enter the specified package names into the text input, and make sure the "Install dependencies" box is checked. It's unnecessary to change the installation source or location.}
       }
 \end{itemize}
 
@@ -441,63 +438,15 @@ Figure~\ref{fig:SYS1Report} shows the initial view of the `SFRAT report\_SYS1\_2
 
 \noindent The left side of the Figure~\ref{fig:SYS1Report} shows the tab level details of all the available results in the report. The report consists of $12$ pages with each result displayed in individual page for better presentation. The Verbose report includes a brief description before the table or graph presented in each page. The first page of the report allows the user to specify the author name and change the report name as well as the date and time in the first five lines of the `SFRATReport.Rmd' file.
 
-Figure~\ref{fig:SYS1CumFail} shows the cumulative failures of the SYS1 data with the corresponding discussion. 
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1CumFail}
-\caption{Cumulative failures of the SYS1 data}
-\label{fig:SYS1CumFail}
-\end{figure}
-
 \noindent Similar graphs for times between failures and failure intensity as a function of the testing time is displayed on Page 3 and 4 respectively.
-
-Figure~\ref{fig:SYS1NonVerbose} shows cumulative failures of the SYS1 data as an example of the non-verbose report.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1NonVerbose}
-\caption{Cumulative failures of the SYS1 data}
-\label{fig:SYS1NonVerbose}
-\end{figure}
-
-
-Figure~\ref{fig:SYS1LTT} shows the Laplace trend test for SYS1 data.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1LTT}
-\caption{Laplace trend test of the SYS1 data}
-\label{fig:SYS1LTT}
-\end{figure}
 
 \noindent Similar plot and discussion for the running arithmetic average is included in the following page in the report.
 
 
 Figure~\ref{fig:SYS1Tab2} shows the first page of the Tab 2 result, which the model fit for the SYS1 data with $2$ failure predictions beyond the end of testing. The end of testing is indicated with a black vertical line.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1Tab2}
-\caption{Model fit of the SYS1 data in Tab 2}
-\label{fig:SYS1Tab2}
-\end{figure}
 
 \noindent Similarly, the times between failures, failure intensity, and reliability growth for all the models are displayed between Page 8-10.
 
-
-Figure~\ref{fig:SYS1Tab3} shows the predictions in Tab 3 for the selected models.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1Tab3}
-\caption{Tab 3 results}
-\label{fig:SYS1Tab3}
-\end{figure}
-
-
-Figure~\ref{fig:SYS1Tab4} shows the model evaluations based on the Akaike information criterion (AIC) and predictive sum of squares error (PSSE).
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=3.4in]{Figures/SYS1Tab4}
-\caption{Tab 4 results}
-\label{fig:SYS1Tab4}
-\end{figure}
 
 \noindent In Figure~\ref{fig:SYS1Tab4}, the $*$ indicates the best model based on the corresponding goodness-of-fit measure.
 
