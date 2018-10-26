@@ -267,7 +267,8 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 
 \section{Automated script to generate SFRAT report}\label{sec:Script}
 %This section discusses the installation and input specifications of the script.
-The script is written in R programming language utilizing the Markdown library to generate the report. The script consists of $532$ lines of code including comments and blank lines between each chunk. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} is a R Markdown file used to create reports in different formats, which contains $493$ lines of code. The \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report, which contains $39$ lines of code.
+Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data.
+The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of $532$ lines of code including comments and blank lines between each chunk. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} is a R Markdown file used to create reports in different formats, which contains $493$ lines of code. The \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report, which contains $39$ lines of code.
 
 \subsection{Installation}\label{sec:ScriptInstall}
 An automated installation script is available from the GitHub repository at: https://github.com/LanceFiondella/SFRAT-Automated-Report/blob/master/installscript.R.
