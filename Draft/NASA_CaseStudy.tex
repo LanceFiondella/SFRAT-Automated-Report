@@ -130,7 +130,7 @@ Figure~\ref{fig_Tab1_leftCol} shows the options in the first tab, which includes
 \label{fig_Excel_sys1}
 \end{figure}
 
-Clicking on the \textbf{Browse...} button enables the user search for and upload the input data file. The progress bar message ``Upload complete'' will indicate a successful file upload. By default, a plot of the cumulative failures for the uploaded data set is displayed. For example, Figure~\ref{fig_Tab1_CDF} shows the SYS1 data set~\cite{BookHoSRE}.
+Clicking on the \textbf{Browse...} button enables the user to search for and upload the input data file. The progress bar message ``Upload complete'' will indicate a successful file upload. By default, a plot of the cumulative failures for the uploaded data set is displayed. For example, Figure~\ref{fig_Tab1_CDF} shows the SYS1 data set~\cite{BookHoSRE}.
 
 \begin{figure}[!h]
 \centering
@@ -154,7 +154,7 @@ Figure~\ref{fig_Tab1_Laplace} shows the Laplace trend test of the SYS1 data set.
 \end{figure}
 
 
-Figure~\ref{fig_SRT_RAT} shows the running arithmetic average of the SYS1 data set. Intuitively, if the time between failures increases then the running arithmetic average increases, indicating system reliability is improving. A decreasing running arithmetic average indicates reliability deterioration. Both the Laplace trend test and running arithmetic average suggest the SYS1 data set exhibits reliability growth.
+Figure~\ref{fig_SRT_RAT} shows the running arithmetic average of the SYS1 data set. If the time between failures increases, the running arithmetic average then increases, indicating an increase in system reliability. A decreasing running arithmetic average indicates reliability deterioration. Both the Laplace trend test and running arithmetic average suggest that the example SYS1 data set exhibits reliability growth.
 
 \begin{figure}[!h]
 \centering
@@ -164,7 +164,7 @@ Figure~\ref{fig_SRT_RAT} shows the running arithmetic average of the SYS1 data s
 \end{figure}
 
 
-Figure~\ref{fig:J4Trend} shows the Laplace trend test of the J4 data set which does not experience statistically significant reliability improvement. Thus, it is not appropriate to apply software reliability models to this data set until additional testing is performed that establishes confidence in reliability growth. The slider at the bottom of Figure~\ref{fig_Tab1_leftCol} ranges from $1$ to $n$, where $n$ denotes the number of data points contained in a data set. The sliders allow the user to specify a subset of the data for plotting, model fitting, and prediction. The default is to use all $n$ data points for model fitting.
+Figure~\ref{fig:J4Trend} shows the Laplace trend test of the J4 data set, which does not experience any significant improvement in reliability. Thus, it is not appropriate to apply software reliability models to this data set until additional testing is performed to establish confidence in reliability growth. The slider at the bottom of Figure~\ref{fig_Tab1_leftCol} ranges from $1$ to $n$, where $n$ denotes the number of data points contained in a data set. The sliders allow the user to specify a subset of the data for plotting, model fitting, and prediction. The default is to use all $n$ data points for model fitting.
 
 \begin{figure}[!h]
 \centering
@@ -173,11 +173,11 @@ Figure~\ref{fig:J4Trend} shows the Laplace trend test of the J4 data set which d
 \label{fig:J4Trend}
 \end{figure}
 
-The user can switch between the \textbf{Plot} and~\textbf{Data and Trend Test Table} in Figure~\ref{fig_Tab1_CDF}. Selecting table view displays the numerical data used to draw the plots in a tabular format similar to Figure~\ref{fig_Excel_sys1}. Selecting a radio button \textbf{.jpeg}, \textbf{.pdf}, \textbf{.png}, and \textbf{.tiff} (Figure~\ref{fig_Tab1_leftCol}) and then clicking \textbf{Save Display} saves a plot in the desired image format, while tables can be saved as csv or pdf. Tabular data can be exported to input into graphing software to include images in reports and research papers.
+The user can switch between the \textbf{Plot} and~\textbf{Data and Trend Test Table} as shown in Figure~\ref{fig_Tab1_CDF}. Selecting table view displays the raw numerical data used to draw the plots in a tabular format similar to Figure~\ref{fig_Excel_sys1}. Selecting a radio button \textbf{.jpeg}, \textbf{.pdf}, \textbf{.png}, or \textbf{.tiff} (Figure~\ref{fig_Tab1_leftCol}) and then clicking \textbf{Save Display} saves a plot in the selected image format, while numerical tables may be saved as a CSV or PDF file. Tabular data may be exported to input into graphing software to include images in reports and research papers.
 
 
 \subsection{Tab 2: Set up and Apply Models}\label{tab2}
-Figure~\ref{fig_Tab2} shows the options available on the second tab where model fitting is performed. The first text box allows the user to ``Specify the number of failures for which the models will make predictions''. Here the number of failures has been set to one for the sake of illustration. The second multi-select box allows the user to identify which models to fit with the data range chosen on Tab one. By default, the tool displays all available models. Clicking the \textbf{Run Selected Models} button executes the algorithms to fit selected model.
+Figure~\ref{fig_Tab2} shows the second tab's options, where model fitting will be performed. The first text box allows the user to ``Specify the number of failures for which the models will make predictions''. Here, the number of failures has been set to one for the sake of illustration. The second multi-select box allows the user to identify which models to fit with the data range chosen on Tab one. By default, the tool displays all available models. Clicking the \textbf{Run Selected Models} button executes the algorithms to fit the selected model.
 
 \begin{figure}[!h]
 \centering%SRT5
@@ -186,9 +186,9 @@ Figure~\ref{fig_Tab2} shows the options available on the second tab where model 
 \label{fig_Tab2}
 \end{figure}
 
-Once model fitting completes, the multi-select box below ``Choose one or more sets of model results to display'' is populated with models that completed successfully. Models that fail, however, will not be available. The results of successful models can be compared against the empirical data by selecting ``Cumulative Failures'', ``Time between failures'', ``Failure intensity'', or ``Reliability growth'' from the dropdown menu below ``Choose a plot type''.
+Once model fitting completes, the multi-select box below ``Choose one or more sets of model results to display'' is populated with models that have completed successfully. Models that fail, however, will not be available. The results of successful models can be compared against the empirical data by selecting ``Cumulative Failures'', ``Time between failures'', ``Failure intensity'', or ``Reliability growth'' from the dropdown menu below ``Choose a plot type''.
 
-Figure~\ref{fig_SYS1_Cum} shows a plot of the observed cumulative failures along with the model fits for all five models. The solid black vertical line indicates the time at which the last failure occurred. Thus, points to the right indicate predictions. This line can be hidden by deselecting the \textbf{Show end of data on plot} checkbox. The legend at the bottom identifies the line that corresponds to each model fit. Figure~\ref{fig_SYS1_Cum} suggests that the geometric and Weibull models fit the observed data closely, whereas other models over or under predict the number of failures at various stages of testing.
+Figure~\ref{fig_SYS1_Cum} shows a plot of the observed cumulative failures along with the fitted models. The black vertical line indicates the time at which the last failure occurred. Thus, points to its right indicate predicted failures. This line can be hidden by deselecting the \textbf{Show end of data on plot} checkbox. The legend at the bottom identifies the line that corresponds to each model fit. Figure~\ref{fig_SYS1_Cum} suggests that the geometric and Weibull models fit the observed data closely, whereas other models over-predict or under-predict the number of failures at various stages of testing.
 
 \begin{figure}[!h]
 \centering
@@ -198,7 +198,7 @@ Figure~\ref{fig_SYS1_Cum} shows a plot of the observed cumulative failures along
 \end{figure}
 
 
-Figures~\ref{fig_TBF},~\ref{fig_FI}, and~\ref{fig_RG} show the time between failures, failure intensity, and reliability growth data views respectively as well as with the corresponding model fits.
+Figures~\ref{fig_TBF},~\ref{fig_FI}, and~\ref{fig_RG} show the times between failures, failure intensities, and reliability growth data views respectively as well as with the corresponding model fits.
 
 \begin{figure}[!h]
 \centering
@@ -223,7 +223,7 @@ Figures~\ref{fig_TBF},~\ref{fig_FI}, and~\ref{fig_RG} show the time between fail
 
 
 \subsection{Tab 3: Query Model Results}\label{tab3}
-Figure~\ref{fig_Tab3} shows the options on the third tab, which enable a variety of predictions. The multi-select box below ``Choose one or more sets of model results to display'' allows the user to specify a model with which they would like to make predictions. To determine the time required to observe the next $N$ failures, the user enters the number of failures in the text box below ``Specify the number of failures that are to be observed.''  Alternatively, the user may ``Specify the amount of additional time for which the software will run'' to determine the number of faults that would be detected in this interval. Entering numbers into these text boxes automatically generates a table such as Figure~\ref{fig_Tab3-table}, which shows the model names and expected number of failures for the next $t$ time units as well as the expected time required to detect the next $N$ failures. In this case, Figure~\ref{fig_Tab3-table} shows predictions for the SYS1 data set, including the time for one additional failure and the predicted number of failures to be observed in the next $100,000$ seconds of additional testing time.
+Figure~\ref{fig_Tab3} shows the options on the third tab, which focus on a variety of predictive algorithms. The multi-select box below ``Choose one or more sets of model results to display'' allows the user to specify a model with which they would like to make predictions. To determine the time required to observe the next $N$ failures, the user enters that number of failures in the text box just below.  Alternatively, the user may ``Specify the amount of additional time for which the software will run'' to determine the number of faults that would be detected a specified interval. Entering numbers into these text boxes automatically generates a table (for example see Figure~\ref{fig_Tab3-table}), which shows the model names and expected number of failures for the next $t$ time units as well as the expected time required to detect the next $N$ failures. In this case, Figure~\ref{fig_Tab3-table} shows predictions for the SYS1 data set, including the time for one additional failure and the predicted number of failures to be observed in the next $100,000$ seconds of additional testing time.
 
 \begin{figure}[!h]
 \centering
@@ -245,7 +245,7 @@ Tab three (Figure~\ref{fig_Tab3}) also provides an option to estimate the testin
 
 
 \subsection{Tab 4: Evaluate Models}\label{tab4}
-Figure~\ref{fig_SRT_tab4} shows tab four options, which provide methods to assess model goodness of fit. The multi-select box below \textbf{Choose one or more sets of model results} allows a user to specify models they would like to apply goodness of fit measures, including the Akaike information criterion (AIC)~\cite{akaike1974new} and predictive sum of squares error (PSSE)~\cite{fiondella2011software}. The text box below ``Specify the Percent Data for PSSE'' allows specification of the fraction of data to be used to compute PSSE.
+Figure~\ref{fig_SRT_tab4} shows tab four's options, which provide methods to assess model goodness of fit. The multi-select box below \textbf{Choose one or more sets of model results} allows a user to specify models they would like to apply goodness of fit measures, including the Akaike information criterion (AIC)~\cite{akaike1974new} and predictive sum of squares error (PSSE)~\cite{fiondella2011software}. The text box below ``Specify the Percent Data for PSSE'' allows specification of the fraction of data to be used to compute PSSE.
 
 \begin{figure}[!h]
 \centering
