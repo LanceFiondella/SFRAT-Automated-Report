@@ -267,7 +267,10 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 
 \section{SFRAT report generation script}\label{sec:Script}
 %This section discusses the installation and input specifications of the script.
-Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data. The script is relatively easy to configure and will assign the user's settings to the SFRAT before running and documenting it, so that whatever specifications a user prefers may be easily added before generating the report.
+%Generally, manually configuring the UI to then create a %report explaining project status can be both tedious and %unpleasant. As a result, a script has been written to %automatically run the SFRAT and generate a PDF report of %the recorded data. The script is relatively easy to %configure and will assign the user's settings to the %SFRAT before running and documenting it, so that %whatever specifications a user prefers may be easily %added before generating the report.
+
+Manually configuring the UI for the generation of each report can grow to be tedious and unpleasant. The facilitation of this process has been made available through an automated script designed to run the SFRAT the user, the script assigns specific settings to eliminate the need to configure the UI.
+
 The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} file is a R Markdown file used to create reports in different formats, whereas the \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report.
 
 \subsection{Installation}\label{sec:ScriptInstall}
@@ -363,16 +366,16 @@ The user should then follow the steps described below to run the script:
         \end{figure}
   }
 
-  \item{Upon sourcing the file, an option to display verbose is offered as shown in Figure~\ref{fig:verbose}
-        \begin{figure}[!h]
-        \centering
-        \includegraphics[width=1.8in]{Figures/verbose}
-        \caption{Verbose report option}
-        \label{fig:verbose}
-        \end{figure}
-
-  \noindent Select ‘1’ to display verbose report, `2' otherwise.
-  }
+% \item{Upon sourcing the file, an option to display verbose is offered as shown in Figure~\ref{fig:verbose}
+%     \begin{figure}[!h]
+%       \centering
+%      \includegraphics[width=1.8in]{Figures/verbose}
+%     \caption{Verbose report option}
+%     \label{fig:verbose}
+%    \end{figure}
+%
+%  \noindent Select ‘1’ to display verbose report, `2' otherwise.
+%  }
   \item {Generated reports will be stored in the `Report' folder in the same location as the script. The file will have the following naming convention ``SFRAT report\_dataName\_YYYY-MM-DD.pdf''}
 \end{itemize}
 
@@ -426,7 +429,7 @@ reliability_interval_length<- 600
 percent_data_for_PSSE <- .9 
 \end{lstlisting}
 
-Save the `report-specifications.R' file after specifying all the required input values and click on `Source' on the top-right corner. This action will prompt a choice to select the verbose report as described in Figure~\ref{fig:verbose}. Select `1' to save a pdf of the verbose report in the folder `/Reports/SFRAT report\_SYS1\_2018-10-11.pdf'. Other formats including .docx or .html version of the document can be compiled by changing the output format in the `SFRATReport.Rmd' file on Line 6.
+%Save the `report-specifications.R' file after specifying %all the required input values and click on `Source' on %%the top-right corner. This action will prompt a choice %to select the verbose report as described in Figure~%\ref{fig:verbose}. Select `1' to save a pdf of the %verbose report in the folder `/Reports/SFRAT report%\_SYS1\_2018-10-11.pdf'. Other formats including .docx or %.html version of the document can be compiled by %changing the output format in the `SFRATReport.Rmd' file %on Line 6.
 
 Figure~\ref{fig:SYS1Report} shows the initial view of the `SFRAT report\_SYS1\_2018-10-11.pdf' with a sample and description of the SYS1 data.
 \begin{figure}[!ht]
