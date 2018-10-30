@@ -86,7 +86,7 @@ The Software Failure and Reliability Assessment Tool is a free and open source t
 \item {What will be the consequences if testing resources are insufficient?}
 \end{itemize}
 
-SFRAT is implemented in the R statistical programming language~\cite{}, an open source environment for statistical computing and graphics that can be used on computers running Windows, OSX, or Linux, with the user interface implemented using the R Shiny library~\cite{}. The code is accessible on GitHub at \textit{https://github.com/LanceFiondella/srt.core}, which after downloading can be ran using RStudio or any other R environment. In doing so, an organization can easily perform information assurance of the code prior to use on sensitive failure data. For complete details, the reader is referred to \textit{http://sasdlc.org/lab/projects/srt.html}.
+SFRAT is implemented in the R statistical programming language~\cite{}, an open source environment for statistical computing and graphics that can be used on computers running Windows, OSX, or Linux, with the user interface implemented using the R Shiny library~\cite{}. The code is accessible on GitHub at \textit{https://github.com/LanceFiondella/srt.core}, which after downloading may run using RStudio or some other R environment. In doing so, an organization can easily perform information assurance of the code prior to use on sensitive failure data. For complete details, the reader is referred to \textit{http://sasdlc.org/lab/projects/srt.html}.
 %re-word sentence 3 below
 The architecture of the SFRAT combines the use of existing software reliability models into a single tool, enabling more systematic comparison of models than previously possible. Presently, data formats supported consist of inter failure time, failure time, and failure count. Functionality includes two trend tests for reliability growth, two failure rate~\cite{BookHoSRE}, Jelinski-Moranda and geometric, and three failure counting models, Goel-Okumoto~\cite{goel1985software}, delayed S-shaped~\cite{artTR1986_19}, and Weibull~\cite{artNHPPsurvey} models as well as two measures of goodness of fit. Also implemented are methods to predict time to reach a desired reliability as well as detecting a number of future failures. The free and open source nature of the tool architecture enables additional models and goodness of fit measures to be later implemented. In this regard, the tool is intended to serve as a shared environment for collaboration among researchers and practitioners.
 
@@ -269,7 +269,7 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 %This section discusses the installation and input specifications of the script.
 %Generally, manually configuring the UI to then create a %report explaining project status can be both tedious and %unpleasant. As a result, a script has been written to %automatically run the SFRAT and generate a PDF report of %the recorded data. The script is relatively easy to %configure and will assign the user's settings to the %SFRAT before running and documenting it, so that %whatever specifications a user prefers may be easily %added before generating the report.
 
-Manually configuring the UI for the generation of each report can grow to be tedious and unpleasant. The facilitation of this process has been made available through an automated script designed to run the SFRAT the user, the script assigns specific settings to eliminate the need to configure the UI.
+Manually configuring the UI for the generation of each report can grow to be tedious and unpleasant. The automation of this process has been made available through a script designed to run the software reliability tool. After making some simple changes to the script, it automatically assigns specific settings to the SFRAT and eliminates the need to configure the UI. In addition, the script will generate a PDF report of the data models evaluated as well as a description of the user-defined parameters if the user so chooses.
 
 The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} file is a R Markdown file used to create reports in different formats, whereas the \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report.
 
@@ -278,11 +278,11 @@ An automated installation script is available from the GitHub repository at \tex
 
 Requirements to install manually:
 \begin{itemize}%perhaps generalize this section into just R instead of Rstudio
-  \item {64-bit Windows 7 or later, Mac OS X 10.9 or later, or Linux capable of running R or R Studio.}
-  \item {Perl 5 version 16 or later. Linux and Mac systems may already have this installed, for Windows machines Perl can be downloaded from: http://strawberryperl.com/}
+  \item {64-bit Windows 7 or later, Mac OS X 10.9 or later, or Linux capable of running R or RStudio.}
+  \item {Perl 5 version 16 or later. Linux and Mac systems may already have this installed, for Windows machines Perl can be downloaded from \textit{http://strawberryperl.com/}}
   \item{Install MikTex or any other equivalent latex text editor if you are running Windows.}
   \item {Install R and RStudio on your machine. You can download both RStudio and R at \textit{rstudio.com}. For Windows, Mac OS X, and Linux, you will need version R version 3.0 or later and RStudio 0.99.482 or later.
-  \item {R (https://cran.r-project.org/) needs to be installed before RStudio can be installed. Once RStudio has been installed, the following packages need to be installed:
+  \item {R (\textit{https://cran.r-project.org/}) needs to be installed before RStudio can be installed. Once RStudio has been installed, the following packages need to be installed:
         \begin{itemize}
           \item {\textbf{shiny}, a web application framework for R}
           \item {\textbf{gdata}, a package providing data manipulation tools}
@@ -309,11 +309,10 @@ Requirements to install manually:
 \end{itemize}
 
 \subsection{Script specifications}\label{sec:ScriptRun}
-The user should then follow the steps described below to run the script:
-
+Now, to run the script using RStudio:
 \begin{itemize}
-  \item {Download the contents from \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report} to your desired location on your computer and unzip the folder.}
-  \item {Launch R Studio and set your working directory to the location where you have saved the downloaded folder. This can be done in one of the two following ways:
+  \item {Download the contents from \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report} to a desired location on your computer and unzip the folder.}
+  \item {Launch RStudio and set your working directory to the location where you have saved the downloaded folder. This can be done in one of the two following ways:
   \begin{enumerate}
     \item {Go to the menu option \textbf{Session}$\to$\textbf{Set Working Directory}$\to$\textbf{To source file location} to set the working directory to the file location.}
     \item {Run the following command on the console: `setwd("/FileLocation")'.}
