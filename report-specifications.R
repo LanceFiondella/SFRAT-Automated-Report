@@ -11,6 +11,10 @@ sheetNumber <- 1
 #designate location of data file
 filePath <- '/SFRAT/model_testing/model_data.xlsx'
 
+#change report colors
+colors <- c("navy","red","green","firebrick4","magenta")
+
+
 #Tab 1 Parameters:
 	#laplace test confidence level
 	confidence_lvl <- 0.9
@@ -57,8 +61,6 @@ library("rootSolve")
 datapath <- paste0(getwd(), filePath)
 datasettemp <- read_excel(datapath,sheet = sheetNumber)  #Specify the sheet with the data
 SheetName<-excel_sheets(path=datapath)[sheetNumber] #Specify the sheet selected in the above line
-colors <- c("navy","red","green","firebrick4","magenta")
-
 
 dataset <- datasettemp[1:floor(dim(datasettemp)[1]),]
 x <- verbose_report
