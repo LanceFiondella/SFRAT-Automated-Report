@@ -308,14 +308,14 @@ Requirements to install manually:
       }
 \end{itemize}
 
-\subsection{Script specifications}\label{sec:ScriptRun}
+\subsection{Configuring and running the script}\label{sec:ScriptRun}
 Now, to run the script using RStudio:
 \begin{itemize}
   \item {Download the contents from \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report} to a desired location on your computer and unzip the folder.}
-  \item {Launch RStudio and set your working directory to the location where you have saved the downloaded folder. This can be done in one of the two following ways:
+  \item {Launch RStudio and set your working directory to the location where you have saved the downloaded folder.
   \begin{enumerate}
-    \item {Go to the menu option \textbf{Session}$\to$\textbf{Set Working Directory}$\to$\textbf{To source file location} to set the working directory to the file location.}
-    \item {Run the following command on the console: `setwd("/FileLocation")'.}
+    \item {Go to the menu option \textbf{Session}$\to$\textbf{Set Working Directory}$\to$\textbf{Choose Directory...}}
+    \item {Navigate to the location of the downloaded folder and click `Open`.}
   \end{enumerate}
   }
   \item {Follow the steps described in Section~\ref{sec:ScriptInstall} to make sure all the required packages are installed on your machine.}
@@ -323,9 +323,11 @@ Now, to run the script using RStudio:
   \begin{enumerate}
     \item {Input specifications:
     \begin{itemize}
-      \item {\textbf{datapath} - Specify the path to the location where input data is saved as an excel spreadsheet. This is on Line 12.}
-      \item {\textbf{sheetNumber} - If the input data file has multiple datasets arranged on different sheets, then this option allows the user to specify a particular dataset. Otherwise, specify `1' on Line 13. It is recommended to name the sheet to distinctly include the data set name in the report.}
-      \item {\textbf{colors} - User can specify the colors as a list on Line 17. If nothing is specified, default set of colors will be used to display graphical results.}
+      \item {\textbf{subset_data} - Enable or disable data subsetting, to compare expected data with real-world data.}
+      \item {\textbf{verbose_report} - Shows or hides verbose descriptions on PDF report pages.}
+      \item {\textbf{sheetNumber} - If the input data file has multiple datasets arranged on different sheets, then this option allows the user to specify a particular dataset. It is recommended to name the sheet to distinctly include the data set name in the report.}
+      \item {\textbf{datapath} - Specify the path to the location where input data is saved as an excel spreadsheet}
+      \item {\textbf{colors} - Specify the colors used. If nothing is specified, default set of colors will be used to display graphical results.}
     \end{itemize}
   }
     \item {Tab 1: Select, Analyze, and Filter Data
@@ -365,16 +367,6 @@ Now, to run the script using RStudio:
         \end{figure}
   }
 
-% \item{Upon sourcing the file, an option to display verbose is offered as shown in Figure~\ref{fig:verbose}
-%     \begin{figure}[!h]
-%       \centering
-%      \includegraphics[width=1.8in]{Figures/verbose}
-%     \caption{Verbose report option}
-%     \label{fig:verbose}
-%    \end{figure}
-%
-%  \noindent Select ‘1’ to display verbose report, `2' otherwise.
-%  }
   \item {Generated reports will be stored in the `Report' folder in the same location as the script. The file will have the following naming convention ``SFRAT report\_dataName\_YYYY-MM-DD.pdf''}
 \end{itemize}
 
@@ -387,45 +379,49 @@ This example demonstrates the use of script in the context of SYS1 data, which c
 
 Upon successfully installing all the required packages and downloading the script from the GitHub, open the `report-specifications.R' file using RStudio. Be sure to set the working directory to the source file location. Prepare an excel file with the input data by following the formatting requirements of the SFRAT shown in Figure~\ref{fig_Excel_sys1} and save it in your desired location. For the sake of illustration, we have taken the example data file provided in the downloaded content from GitHub. The first sheet of the `model\_data.xlsx' corresponds to the SYS1 data, which are specified below. All required inputs to all four tabs of the SFRAT tool are specified for SYS1 data as below.
 \begin{lstlisting}
-#Input Specifications:
-#Line 12: path to the dataset
-datapath <- paste0(getwd(), '/SFRAT/model_testing/model_data.xlsx')   
+# Input Parameters #
+	
+#subset data into parts? 1 for yes, 0 for no
+subset_data <- 0
 
-#Line 13: Select the sheet number in the excel file if there are multiple sheets
-sheetNumber <- 1  
-       
-#Line 17: Specify colors for your model output
-colors <- c("navy","red","green","firebrick4","magenta") 
+#1 for verbose report, 2 for non-verbose
+verbose_report <- 2									
 
-# TAB 1: Line 20: 
-confidence_lvl <- .9 #Between 0 to 1
+#select which sheet to pick, in this case gives SYS1
+sheetNumber <- 1
+#designate location of data file
+filePath <- '/SFRAT/model_testing/model_data.xlsx'
 
-# TAB 2: Line 23-25:
-#Number of failures to predict
-num_failures_future_prediction <- 2 
+#Tab 1 Parameters:
+	#laplace test confidence level
+	confidence_lvl <- 0.9
 
-#Specify models to apply
-models_to_apply <- c('DSS', 'GM', 'Wei','GO','JM') 
+#Tab 2 Parameters:
+	#number of future failures to predict
+	num_failures_future_prediction <- 2	
 
-#Mission time to compute reliability growth
-mission_time <- 600
+	#pick models to include, by default is all
+	models_to_apply <- c('DSS', 'GM', 'Wei','GO','JM')
+	#mission time to compute reliability growth
+	mission_time <- 600
 
-# TAB 3: Line 28-31:
-#Number of failures to predict
-num_failures_to_predict <- 2 
+#Tab 3 Parameters:
+	#number of future failures to predict
+	num_failures_to_predict <- 3
 
-#Operation/mission time
-additional_time_software_will_run <- 4116 
+	#future prediction time
+	additional_time_software_will_run <- 4116
 
-#Target reliability between 0 to 1
-desired_reliability <- .9  
+	#between 0-1, desired software reliability
+	desired_reliability <- .9
 
-#Mission time for target reliability
-reliability_interval_length<- 600 
+	#interval size
+	reliability_interval_length<- 600
 
-# TAB 4: Line 34: 
-#Percent of data between 0 to 1 to fit models
-percent_data_for_PSSE <- .9 
+#Tab 4 Parameters:
+	#predictive sum of squares, percentage
+	percent_data_for_PSSE <- .9
+	
 \end{lstlisting}
 
 %Save the `report-specifications.R' file after specifying %all the required input values and click on `Source' on %%the top-right corner. This action will prompt a choice %to select the verbose report as described in Figure~%\ref{fig:verbose}. Select `1' to save a pdf of the %verbose report in the folder `/Reports/SFRAT report%\_SYS1\_2018-10-11.pdf'. Other formats including .docx or %.html version of the document can be compiled by %changing the output format in the `SFRATReport.Rmd' file %on Line 6.
