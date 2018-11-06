@@ -1,13 +1,11 @@
 # edit below for script parameters #
 	
-#subset data into parts? 1 for yes, 0 for no
-subset_data <- 0
-
-#1 for verbose report, 2 for non-verbose
-verbose_report <- 2									
+#TRUE for verbose report, FALSE for non-verbose (descriptions)
+verbose_report <- FALSE								
 
 #select which sheet to pick, in this case gives SYS1
 sheetNumber <- 1
+
 #designate location of data file
 filePath <- '/SFRAT/model_testing/model_data.xlsx'
 
@@ -63,10 +61,11 @@ datasettemp <- read_excel(datapath,sheet = sheetNumber)  #Specify the sheet with
 SheetName<-excel_sheets(path=datapath)[sheetNumber] #Specify the sheet selected in the above line
 
 dataset <- datasettemp[1:floor(dim(datasettemp)[1]),]
-x <- verbose_report
+x <- 2 - as.integer(verbose_report)
 rmarkdown::render(paste0(getwd(),'/SFRATReport.Rmd'),output_file =  paste("SFRAT report_", SheetName,'_', Sys.Date(), ".pdf", sep=''),output_dir = './Reports') 
 
-if (subset_data==1) {
+subset_data <- FALSE
+if (subset_data==TRUE) {
   ds <- readline(prompt="How many percent of data should be used in each subset? (Input should be between 0 to 1)___")
   ds <- as.double(ds) 
   dsi <- ds
