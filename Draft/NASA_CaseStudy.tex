@@ -266,23 +266,21 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 
 
 \section{SFRAT report generation script}\label{sec:Script}
-%This section discusses the installation and input specifications of the script.
-%Generally, manually configuring the UI to then create a %report explaining project status can be both tedious and %unpleasant. As a result, a script has been written to %automatically run the SFRAT and generate a PDF report of %the recorded data. The script is relatively easy to %configure and will assign the user's settings to the %SFRAT before running and documenting it, so that %whatever specifications a user prefers may be easily %added before generating the report.
-
-Manually configuring the UI for the generation of each report can grow to be tedious and unpleasant. The automation of this process has been made available through a script designed to run the software reliability tool. After making some simple changes to the script, it automatically assigns specific settings to the SFRAT and eliminates the need to configure the UI. In addition, the script will generate a PDF report of the data models evaluated as well as a description of the user-defined parameters if the user so chooses.
+This section discusses the installation and input specifications of the script.
+Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data. The script is relatively easy to configure and will assign the user's settings to the SFRAT before running and documenting the tool's results. This allows for easy report "writing", i.e. generation, and comes with the advantage of repeatability.
 
 The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} file is a R Markdown file used to create reports in different formats, whereas the \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report.
 
 \subsection{Installation}\label{sec:ScriptInstall}
 An automated installation script is available from the GitHub repository at \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report}.
 
-Requirements to install manually:
+To install the script manually:
 \begin{itemize}%perhaps generalize this section into just R instead of Rstudio
-  \item {64-bit Windows 7 or later, Mac OS X 10.9 or later, or Linux capable of running R or RStudio.}
-  \item {Perl 5 version 16 or later. Linux and Mac systems may already have this installed, for Windows machines Perl can be downloaded from \textit{http://strawberryperl.com/}}
-  \item{Install MikTex or any other equivalent latex text editor if you are running Windows.}
-  \item {Install R and RStudio on your machine. You can download both RStudio and R at \textit{rstudio.com}. For Windows, Mac OS X, and Linux, you will need version R version 3.0 or later and RStudio 0.99.482 or later.
-  \item {R (\textit{https://cran.r-project.org/}) needs to be installed before RStudio can be installed. Once RStudio has been installed, the following packages need to be installed:
+  \item {Windows 7 (64-bit) or newer, Mac OS X 10.9 or newer, or Linux capable of running R or RStudio.}
+  \item {Perl 5 version 16 or newer - Linux and Mac systems may already have this installed; on Windows machines, Perl may be downloaded from \textit{http://strawberryperl.com/}}
+  \item{If you are running Windows, any LaTeX text editor (e.g. MikTex).}
+  \item {Install R and RStudio on your machine. You can download both RStudio and R at \textit{rstudio.com}. For Windows, Mac OS X, and Linux, you will need version R version 3.0 or newer and RStudio 0.99.482 or newer.
+  \item {Once RStudio has been installed, the following packages need to be installed:
         \begin{itemize}
           \item {\textbf{shiny}, a web application framework for R}
           \item {\textbf{gdata}, a package providing data manipulation tools}
@@ -296,7 +294,7 @@ Requirements to install manually:
           \item {\textbf{formatR}, a package designed to reformat R code to improve readability}
         \end{itemize}
         } 
-        \item {These packages can be installed via the "Install packages..." option in RStudio's "Tools" menu, as shown in Figure~\ref{fig:InstallPackages}:
+        \item {There is an automatic package installation script in the report generation script repository. Running this script is described below in section \ref{sec:ScriptRun}. Otherwise, these packages may also be installed manually via the "Install packages..." option in RStudio's "Tools" menu, as shown in Figure~\ref{fig:InstallPackages}:
         \begin{figure}[!h]
         \centering
         \includegraphics[width=3.4in]{Figures/InstallPackages}
@@ -304,29 +302,29 @@ Requirements to install manually:
         \label{fig:InstallPackages}
         \end{figure}
 
-        \noindent Enter the specified package names into the text input, and make sure the "Install dependencies" box is checked. It's unnecessary to change the installation source or location.}
+        \noindent To install manually, enter the specified package names into the text input, and make sure the "Install dependencies" box is checked. It's unnecessary to change the installation source or location.}
       }
 \end{itemize}
 
 \subsection{Configuring and running the script}\label{sec:ScriptRun}
-Now, to run the script using RStudio:
+To run the script using RStudio:
 \begin{itemize}
-  \item {Download the contents from \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report} to a desired location on your computer and unzip the folder.}
-  \item {Launch RStudio and set your working directory to the location where you have saved the downloaded folder.
+  \item {To download the script locally, navigate to \textit{github.com/LanceFiondella/SFRAT-Automated-Report}, and from the "Clone or download" drop-down click "Download ZIP". Extract the folder to a location of your choosing.}
+  \item {Launch RStudio and set its working directory to the location where the folder is saved.
   \begin{enumerate}
-    \item {Go to the menu option \textbf{Session}$\to$\textbf{Set Working Directory}$\to$\textbf{Choose Directory...}}
+    \item {Click the menu options \textbf{Session} $\to$ \textbf{Set Working Directory} $\to$ \textbf{Choose Directory...}}
     \item {Navigate to the location of the downloaded folder and click `Open`.}
   \end{enumerate}
   }
-  \item {Follow the steps described in Section~\ref{sec:ScriptInstall} to make sure all the required packages are installed on your machine.}
-  \item {Open the file `report-specifications.R’ and specify the required input parameters that you would have specified on the SFRAT user interface:
+  \item {If not previously done, install the packages described in Section~\ref{sec:ScriptInstall}. This can be done by opening the 'installscript.R' file inside the extracted folder with RStudio and clicking 'Source'.}
+  \item {Open the file `report-specifications.R’. Each variable in this script represents some parameter in the UI for the SFRAT. The script is designed to be easy to configure in that all the SFRAT settings will be found on this one script in one short section.
   \begin{enumerate}
-    \item {Input specifications:
+    \item {Input specifications - these variables affect the report generation as a whole and are constant throughout the entire process. 
     \begin{itemize}
-      \item {\textbf{subset_data} - Enable or disable data subsetting, to compare expected data with real-world data.}
-      \item {\textbf{verbose_report} - Shows or hides verbose descriptions on PDF report pages.}
+    \item {\textbf{subset\_data} - Enable or disable data subsetting, to compare expected data with real-world data. If enabled, this will }
+      \item {\textbf{verbose\_report} - Shows or hides verbose descriptions on PDF report pages.}
       \item {\textbf{sheetNumber} - If the input data file has multiple datasets arranged on different sheets, then this option allows the user to specify a particular dataset. It is recommended to name the sheet to distinctly include the data set name in the report.}
-      \item {\textbf{datapath} - Specify the path to the location where input data is saved as an excel spreadsheet}
+      \item {\textbf{datapath} - Specify the location of the input data file.}
       \item {\textbf{colors} - Specify the colors used. If nothing is specified, default set of colors will be used to display graphical results.}
     \end{itemize}
   }
