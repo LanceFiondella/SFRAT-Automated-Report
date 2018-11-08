@@ -22,7 +22,8 @@ if (version$major < 3 || (version$major == 3 && version$minor < 2.2)){ #checks i
 install.packages("htmltools")
 if(!require(shiny)) {install.packages("shiny", repos="http://cran.rstudio.com/");library(shiny)} #shiny is the main interface package
 if(!require(DT)) {install.packages("DT", repos="http://cran.rstudio.com/");library(DT)} #DT
-if(!require(knitr)) {install.packages("knitr", repos="http://cran.rstudio.com/");library(knitr)} #DT
+if(!require(knitr)) {install.packages("knitr", repos="http://cran.rstudio.com/");library(knitr)} 
+if(!require(rmarkdown)) {install.packages("rmarkdown", repos="http://cran.rstudio.com/");library(rmarkdown)}
 if(!require(gdata)) {install.packages("gdata", repos="http://cran.rstudio.com/");library(gdata)} #gdata is used for manipulating the data out of an excel sheet
 if(!require(ggplot2)) {install.packages("ggplot2", repos="http://cran.rstudio.com/");library(ggplot2)} #ggplot2 is used for crerating various plots
 if(!require(rootSolve)) {install.packages("rootSolve", repos="http://cran.rstudio.com/");library(rootSolve)} #rootSolve is used for finding a root of an equation
