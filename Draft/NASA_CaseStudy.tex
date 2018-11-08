@@ -266,168 +266,130 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 
 
 \section{SFRAT report generation script}\label{sec:Script}
-This section discusses the installation and input specifications of the script.
-Generally, manually configuring the UI to then create a report explaining project status can be both tedious and unpleasant. As a result, a script has been written to automatically run the SFRAT and generate a PDF report of the recorded data. The script is relatively easy to configure and will assign the user's settings to the SFRAT before running and documenting the tool's results. This allows for easy report "writing", i.e. generation, and comes with the advantage of repeatability.
+This section discusses the installation and input specifications of the script. To reiterate, this script will automatically run the SFRAT based on user-defined variables inside of the script, and will then generate a PDF report of the exported data. As a result, it's simple to repeatedly create reader-friendly reports based on different data sets, for example. For some users, manually configuring the settings via the UI may be tedious and unpleasant, so therefore changing a few variables in a short script to perform the same action may be somewhat easier.
+The report generation script is written in the R programming language, and uses its Markdown library to actually generate the report. To achieve this, two files are used, being \textbf{report-specifications.R} and
+\textbf{SFRATReport.Rmd}. The \textbf{report-specifications.R} is used to configure the variables taken into account when generating the report, and \textbf{SFRATReport.Rmd} Markdown file is used to create reports in different formats.
 
-The script is written in the R programming language and utilizes the Markdown library to generate the report. The script consists of two files namely \textbf{report-specifications.R} and \textbf{SFRATReport.Rmd}. The \textbf{SFRATReport.Rmd} file is a R Markdown file used to create reports in different formats, whereas the \textbf{report-specifications.R} is an R script that allows the user to specify inputs necessary to run the SFRAT before generating a report.
-
-\subsection{Installation}\label{sec:ScriptInstall}
-An automated installation script is available from the GitHub repository at \textit{https://github.com/LanceFiondella/SFRAT-Automated-Report}.
-
-To install the script manually:
-\begin{itemize}%perhaps generalize this section into just R instead of Rstudio
-  \item {Windows 7 (64-bit) or newer, Mac OS X 10.9 or newer, or Linux capable of running R or RStudio.}
-  \item {Perl 5 version 16 or newer - Linux and Mac systems may already have this installed; on Windows machines, Perl may be downloaded from \textit{http://strawberryperl.com/}}
-  \item{If you are running Windows, any LaTeX text editor (e.g. MikTex).}
-  \item {Install R and RStudio on your machine. You can download both RStudio and R at \textit{rstudio.com}. For Windows, Mac OS X, and Linux, you will need version R version 3.0 or newer and RStudio 0.99.482 or newer.
-  \item {Once RStudio has been installed, the following packages need to be installed:
-        \begin{itemize}
-          \item {\textbf{shiny}, a web application framework for R}
-          \item {\textbf{gdata}, a package providing data manipulation tools}
-          \item {\textbf{ggplot}, a graphical package capable of creating elegant and complex plots}
-          \item {\textbf{DT}, a package providing an R interface to the JavaScript library DataTables}
-          \item {\textbf{rootSolve}, a package used to find the roots of n nonlinear (or linear) equations}
-          \item {\textbf{knitr}, a package providing a general-purpose tool for dynamic report generation in R using Literate Programming techniques}
-          \item {\textbf{rmarkdown}, a package allowing converting R Markdown documents into a variety of formats including HTML, MS Word PDF, and Beamer}
-          \item {\textbf{markdown}, a package for authoring HTML, PDF, and MS Word documents}
-          \item {\textbf{readxl}, a package to import excel files}
-          \item {\textbf{formatR}, a package designed to reformat R code to improve readability}
-        \end{itemize}
-        } 
-        \item {There is an automatic package installation script in the report generation script repository. Running this script is described below in section \ref{sec:ScriptRun}. Otherwise, these packages may also be installed manually via the "Install packages..." option in RStudio's "Tools" menu, as shown in Figure~\ref{fig:InstallPackages}:
-        \begin{figure}[!h]
-        \centering
-        \includegraphics[width=3.4in]{Figures/InstallPackages}
-        \caption{Install packages dialog box}
-        \label{fig:InstallPackages}
-        \end{figure}
-
-        \noindent To install manually, enter the specified package names into the text input, and make sure the "Install dependencies" box is checked. It's unnecessary to change the installation source or location.}
-      }
+\subsection{Script Installation}\label{sec:ScriptInstall}
+To use the script, some user requirements must be met:
+\begin{itemize}
+  \item {\textit{Operating System}: Windows 7 (64-bit) or newer, Mac OS X 10.9 or newer, Linux capable of running R}
+  \item {\textit{Perl}: Perl 5 version 16 or newer - may be pre-installed on OSX/Linux; for Windows, Perl may be downloaded from \textit{http://strawberryperl.com/}}
+  \item{\textit{LaTeX}: Some user-chosen LaTeX editor (e.g. MikTex, TexStudio, Texmaker)}
+  \item {\textit{R}: R(ver. 3.0 or newer) and RStudio(ver. 0.99.482 or newer) are required, downloadable from \textit{http://rstudio.com}}.
+   \item{\textit{pandoc}: Newer versions of R does not support installing pandoc as a package, so it must be downloaded separately from \textit{https://pandoc.org/installing.html}.}
 \end{itemize}
 
-\subsection{Configuring and running the script}\label{sec:ScriptRun}
-To run the script using RStudio:
-\begin{enumerate}
+To download the script locally, navigate to \textit{http://github.com/LanceFiondella/SFRAT-Automated-Report}, and from the "Clone or download" drop-down menu click "Download ZIP". Extract the folder to a location of your choosing. RStudio should then be installed the same as any other application on the user's operating system. To be able to use the script, some R packages must be installed before use:
+\begin{itemize}
+	\item {\textbf{shiny}, a web application framework for R}
+	\item {\textbf{gdata}, a package providing data manipulation tools}
+	\item {\textbf{ggplot}, a graphical package capable of creating elegant and complex plots}
+	\item {\textbf{DT}, a package providing an R interface to the JavaScript library DataTables}
+	\item {\textbf{rootSolve}, a package used to find the roots of n nonlinear (or linear) equations}
+	\item {\textbf{knitr}, a package providing a general-purpose tool for dynamic report generation in R using Literate Programming techniques}
+	\item {\textbf{rmarkdown}, a package allowing converting R Markdown documents into a variety of formats including HTML, MS Word PDF, and Beamer}
+	\item {\textbf{markdown}, a package for authoring HTML, PDF, and MS Word documents}
+	\item {\textbf{readxl}, a package to import excel files}
+	\item {\textbf{formatR}, a package designed to reformat R code to improve readability}
+ \end{itemize}
+ 
+These packages may be downloaded through RStudio or by use of another script included inside of the \textit{SFRAT-Automated-Report} folder. This may be done by opening the \textbf{installscript.R} file in RStudio and clicking "Source", similar to what's seen in Figure~\ref{fig:scriptsource}. To install via command line, run R from the script directory and use \textbf{source('installscript.R')} or \textbf{Rscript installscript.R}. The packages may also be installed manually via the "Install packages..." option in RStudio's "Tools" menu, as shown in Figure~\ref{fig:InstallPackages}:
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=3.4in]{Figures/InstallPackages}
+	\caption{Install packages dialog box}
+	\label{fig:InstallPackages}
+	\end{figure}
 
-  \item {To download the script locally, navigate to \textit{github.com/LanceFiondella/SFRAT-Automated-Report}, and from the "Clone or download" drop-down click "Download ZIP". Extract the folder to a location of your choosing.}
+\noindent To install a package manually, enter the specified package names into the text input, and make sure the "Install dependencies" box is checked. It's unnecessary to change the installation source or location.
+
+\subsection{Using the report generation script}\label{sec:ScriptRun}
+To run the main script using RStudio:
+\begin{enumerate}
   \item {Launch RStudio and set its working directory to the location where the folder is saved.
   \begin{enumerate}
     \item {Click the menu options \textbf{Session} $\to$ \textbf{Set Working Directory} $\to$ \textbf{Choose Directory...}}
     \item {Navigate to the location of the downloaded folder and click `Open`.}
   \end{enumerate}
   }
-  \item {If not previously done, install the packages described in Section~\ref{sec:ScriptInstall}. This can be done automatically by opening the 'installscript.R' file in RStudio and clicking 'Source'.}
-  \item {Open the file `report-specifications.R’. Each variable in this script represents some parameter in the UI for the SFRAT. The script is designed to be easy to configure in that all the SFRAT settings will be found on this one script in one short section.
+  \item {Ensure that the required packages are installed. See Section ~\ref{sec:ScriptInstall} if not previously done.}
+  \item {Open the file \textbf{report-specifications.R}. Each variable in this script represents some parameter in the UI for the SFRAT. Any setting found in the UI will be configurable inside this script. Below is a brief description of each parameter found in the script.
   \begin{itemize}
     \item {Main input specifications: 
     \begin{itemize}
-    \item {\textbf{verbose\_report} - Shows or hides verbose descriptions on PDF report pages. Set to TRUE to enable such descriptions or FALSE to hide them.}
-      \item {\textbf{sheetNumber} - If the input data file has multiple datasets arranged on different sheets, this option allows the user to specify a particular dataset. It is recommended to name the sheet to distinctly include the data set name in the report.}
-      \item {\textbf{datapath} - Specify the path of the input data file.}
-      \item {\textbf{colors} - Specify the set of colors used in the report. If nothing is specified, the default set of colors will be used to display graphical results.}
+    \item {\textbf{verbose\_report} - Enabling this setting will show verbose reports on the PDF report. It provides a brief description of the purpose of each figure.}
+      \item {\textbf{sheetNumber} - If the input data file has multiple data sets arranged on different sheets, this value allows the user to decide which data set to use. It's encouraged to name the data sets as that name will appear on the report.}
+      \item {\textbf{datapath} - This specifies the path of the input data file.}
+      \item {\textbf{colors} - This specifies the set of colors used in the report. If nothing is specified, the default set of colors will be used to display graphical results.}
     \end{itemize}
   }
     \item {Tab 1: Select, Analyze, and Filter Data
     \begin{itemize}
-    \item{\textbf{confidence\_lvl} - This allows the user to specify a confidence level between $0$ and $1$ (as a float value) to quantify a desired level of significance that the data exhibits reliability growth using the Laplace trend test.}
+    \item{\textbf{confidence\_lvl} - This allows the user to specify a confidence level between $0$ and $1$ for the Laplace trend test to quantify a desired level of significance for reliability growth.}
     \end{itemize}
     }
     \item {Tab 2: Set Up and Apply Models
     \begin{itemize}
-      \item {\textbf{num\_failures\_future\_prediction} - The user can specify the number of failures that they would like to predict beyond the end of testing. The number should be an integer value.}
-      \item {\textbf{models\_to\_apply} - This allows the user to specify which software reliability growth models they would like to apply to make predictions. The available models are: delayed s-shape (DSS), geometric (GM), Goel-Okumoto (GO), Jelinski-Moranda (JM), and Weibull (Wei) models. }
+      \item {\textbf{num\_failures\_future\_prediction} - The user can specify the number of failures that they would like to predict beyond the end of testing.}
+      \item {\textbf{models\_to\_apply} - This allows the user to specify which software reliability growth models they would like to apply to make predictions. The available models are a delayed s-shape (DSS), geometric (GM), Goel-Okumoto (GO), Jelinski-Moranda (JM), and Weibull (Wei) model. }
       \item {\textbf{mission\_time} - The user can specify what amount of mission time beyond the testing period for which they would like to view the reliability growth trend. }
     \end{itemize}
     }
     \item {Tab 3: Query Model Results
     \begin{itemize}
-      \item {\textbf{num\_failures\_to\_predict} - Specify the number of failures to predict beyond the end of testing. This is similar to `num\_failures\_future\_prediction'.}
+      \item {\textbf{num\_failures\_to\_predict} - Specify the number of failures to predict beyond the end of testing. This is similar to \textit{num\_failures\_future\_prediction}.}
       \item {\textbf{additional\_time\_software\_will\_run} - User can specify the additional time beyond the end of testing to predict the number of failures. }
-      \item {\textbf{desired\_reliability} - User can specify the target reliability between $0$ to $1$, as a float value, to estimate the time required to achieve that.}
-      \item {\textbf{reliability\_interval\_length}- This is to specify the mission time beyond testing to estimate the reliability.}
+      \item {\textbf{desired\_reliability} - User can specify the target reliability between $0$ to $1$ to estimate the time required to achieve such failures.}
+      \item {\textbf{reliability\_interval\_length} - This is used to specify the mission time beyond testing to estimate the reliability.}
     \end{itemize}
     }
     \item {Tab 4: Evaluate Models
     \begin{itemize}
-    \item{\textbf{percent\_data\_for\_PSSE} - The user can specify the percent of data to be used for model fitting. The remaining data will be used to assess model prediction capability using the predictive sum of squares error (PSSE).}
+    \item{\textbf{percent\_data\_for\_PSSE} - The user can specify the percentage of data to be used for model fitting. The remaining data will be used to assess model prediction capability using the predictive sum of squares error.}
     \end{itemize}
     }
   \end{itemize}
   }
 
-  \item{After specifying the input parameters, save the file. There are two methods to run the script and generate the report: 
-  \begin{itemize}
-  \item {Click 'source' in the top-right corner as shown in Figure~\ref{fig:scriptsource}.}
-  \item {In the console, run the following command: \textit{source(‘report-specifications.R’)}}
-\end{itemize}  
-        \begin{figure}[!h]
-        \centering
-        \includegraphics[width=3.2in]{Figures/scriptsource}
-        \caption{Source script file}
-        \label{fig:scriptsource}
-        \end{figure}
-  }
+  \item{After specifying the input parameters, save the file. To modify the header of the report PDF (e.g. author name), modify lines $2$ through $6$ in \textbf{SFRATReport.Rmd}. There are two methods to run the script and generate the report; either click \textit{Source} in the top-right corner as shown in Figure~\ref{fig:scriptsource}, or in the console, run the following command: \textbf{source(‘report-specifications.R’)}
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=3.2in]{Figures/scriptsource}
+	\caption{Source script file}
+	\label{fig:scriptsource}
+	\end{figure}
+}
 
-  \item {The generated reports will be stored in the `Report' folder, which is located in the same directory as the script. Each report file will have the following naming convention: 
+  \item {The generated reports will be stored in the \textit{Report} folder, which is located in the same directory as the script. Each report file will have the following naming convention: 
   \newline
-  \textit{SFRAT report\_dataName\_YYYY-MM-DD.pdf}}
+  \textbf{SFRAT report\_dataName\_YYYY-MM-DD.pdf}}
 \end{enumerate}
-
+The script may also be easily run via the command line. Assuming that all prerequisites are met, navigate to the script folder, run R and enter \textbf{source('report-specifications.R')}, or simply run \textbf{Rscript report-specifications.R} in the script directory.
 
 \section{Illustrations}\label{sec:Ex}
-This section illustrates the use of script to analyse the failure data using example SYS1 data~\cite{BookHoSRE}. The second example demonstrates the online assessment of the data using SYS1.
+This section displays the example results based on the SYS1 example data~\cite{BookHoSRE}. The second example demonstrates the online assessment of the data using SYS1.
 
 \subsection{Script on SYS1 data}\label{sec:Ex:Script}
-This example demonstrates the use of the script in the context of SYS1 example data, which consists of $136$ failures. 
-
-Upon successfully installing all the required packages and downloading the script from the GitHub, open the `report-specifications.R' file using RStudio. Be sure to set the working directory to the source file location. Prepare an excel file with the input data by following the formatting requirements of the SFRAT shown in Figure~\ref{fig_Excel_sys1} and save it in your desired location. For the sake of illustration, we have taken the example data file provided in the downloaded content from GitHub. The first sheet of the `model\_data.xlsx' corresponds to the SYS1 data, which are specified below. All required inputs to all four tabs of the SFRAT tool are specified for SYS1 data as below.
+This example demonstrates the use of the script in the context of SYS1 example data, which consists of $136$ failures. The in-line comments have been removed as variable summaries are available in Section \ref{sec:ScriptRun}. This example purely displays the example values used to generate the given report. The following variables used work best with the SYS1 data set.
 \begin{lstlisting}
-# Input Parameters #
-
-#1 for verbose report, 2 for non-verbose
-verbose_report <- 2									
-
-#select which sheet to pick, in this case gives SYS1
+verbose_report <- TRUE								
 sheetNumber <- 1
-#designate location of data file
 filePath <- '/SFRAT/model_testing/model_data.xlsx'
-
-#Tab 1 Parameters:
-	#laplace test confidence level
-	confidence_lvl <- 0.9
-
-#Tab 2 Parameters:
-	#number of future failures to predict
-	num_failures_future_prediction <- 2	
-
-	#pick models to include, by default is all
-	models_to_apply <- c('DSS', 'GM', 'Wei','GO','JM')
-	#mission time to compute reliability growth
-	mission_time <- 600
-
-#Tab 3 Parameters:
-	#number of future failures to predict
-	num_failures_to_predict <- 3
-
-	#future prediction time
-	additional_time_software_will_run <- 4116
-
-	#between 0-1, desired software reliability
-	desired_reliability <- .9
-
-	#interval size
-	reliability_interval_length<- 600
-
-#Tab 4 Parameters:
-	#predictive sum of squares, percentage
-	percent_data_for_PSSE <- .9
+colors <- c("navy","red","green","firebrick4","magenta")
+confidence_lvl <- 0.9
+num_failures_future_prediction <- 2	
+models_to_apply <- c('DSS', 'GM', 'Wei','GO','JM')
+mission_time <- 600
+num_failures_to_predict <- 2
+additional_time_software_will_run <- 4116
+desired_reliability <- .9
+reliability_interval_length<- 600
+percent_data_for_PSSE <- .9
 	
 \end{lstlisting}
 
-%Save the `report-specifications.R' file after specifying %all the required input values and click on `Source' on %%the top-right corner. This action will prompt a choice %to select the verbose report as described in Figure~%\ref{fig:verbose}. Select `1' to save a pdf of the %verbose report in the folder `/Reports/SFRAT report%\_SYS1\_2018-10-11.pdf'. Other formats including .docx or %.html version of the document can be compiled by %changing the output format in the `SFRATReport.Rmd' file %on Line 6.
-
-Figure~\ref{fig:SYS1Report} shows the initial view of the `SFRAT report\_SYS1\_2018-10-11.pdf' with a sample and description of the SYS1 data.
+Figure~\ref{fig:SYS1Report} shows the initial view of the SFRAT report generated, displaying an initial view of some of the input SYS1 data. This provides a verification as well as a sample of the data used.
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=3.4in]{Figures/SYS1Report}
@@ -435,37 +397,26 @@ Figure~\ref{fig:SYS1Report} shows the initial view of the `SFRAT report\_SYS1\_2
 \label{fig:SYS1Report}
 \end{figure}
 
-\noindent The left side of the Figure~\ref{fig:SYS1Report} shows the tab level details of all the available results in the report. The report consists of $12$ pages with each result displayed in individual page for better presentation. The Verbose report includes a brief description before the table or graph presented in each page. The first page of the report allows the user to specify the author name and change the report name as well as the date and time in the first five lines of the `SFRATReport.Rmd' file.
+When viewing the PDF, the left side of the report (as demonstrated in Figure~\ref{fig:SYS1Report}) will give a outline of the different sections of the report. This particular report is presented over $12$ pages, with each result using a separate page. With verbose reporting enabled, a brief description of each graph or table is also presented. In addition, the first page allows the user to specify the author, report name, date, and time. If not previously done, modify the first few lines in \textbf{SFRATReport.Rmd} inside the script folder and re-generate the report.
 
-\noindent Similar graphs for times between failures and failure intensity as a function of the testing time is displayed on Page 3 and 4 respectively.
+To describe the report shortly, graphs for times between failures and failure intensity as a function of the testing time is displayed on pages $3$ and $4$ respectively. Similar plot and discussion for the running arithmetic average is included in the following page.
 
-\noindent Similar plot and discussion for the running arithmetic average is included in the following page in the report.
+%\subsection{Online analysis using the script on SYS1 data}\label{sec:Ex:ScriptOnline}
+%example of application sequence that enables comparison of which model predicts best throughout the data
 
+%collection process and the assessments that might have been made if this were an ongoing activity. We can do %this in the
 
-Figure~\ref{fig:SYS1Tab2} shows the first page of the Tab 2 result, which the model fit for the SYS1 data with $2$ failure predictions beyond the end of testing. The end of testing is indicated with a black vertical line.
-
-\noindent Similarly, the times between failures, failure intensity, and reliability growth for all the models are displayed between Page 8-10.
-
-
-\noindent In Figure~\ref{fig:SYS1Tab4}, the $*$ indicates the best model based on the corresponding goodness-of-fit measure.
-
-
-\subsection{Online analysis using the script on SYS1 data}\label{sec:Ex:ScriptOnline}
-example of application sequence that enables comparison of which model predicts best throughout the data
-
-collection process and the assessments that might have been made if this were an ongoing activity. We can do this in the
-
-context of sys1 and then adapt to NASA data.
+%context of sys1 and then adapt to NASA data.
 
 
 \section{Conclusion and Future Work}\label{sec:Concl}
-In this paper, we presented a script to automatically apply the Software Failure and Reliability Assessment Tool. An example of the SFRAT in the context of SYS1 dataset and a detailed description to run the tool is discussed. Automated pdf report generation is demonstrated using SYS1 data set. A second example is presented to illustrate the utilization of script to perform online assessment of the data. 
+In this paper, we presented a script to automatically apply the Software Failure and Reliability Assessment Tool. An example of the SFRAT in the context of SYS1 dataset and a detailed description to run the tool is discussed. Automated PDF report generation is demonstrated using SYS1 data set. A second example is presented to illustrate the utilization of script to perform online assessment of the data. 
 
-Future work will extend this script to accommodate the updated version of the SFRAT. The script will be ported to python programming language considering the ease of use. In addition, options to perform online data assessment will be integrated with required functionalities and measures.
+Future work will extend this script to accommodate the updated version of the SFRAT. Both the SFRAT and the script will be ported to the Python programming language, considering its ease of use. In addition, options to perform online data assessment will be integrated with required functionality and measures.
 
 
 \section*{Acknowledgment}\label{sec:Ack}
-This work is supported by the Natioanl Aeronautics and Space Administration (NASA) SARP under Grant Number (\#). The authors would also like to acknowledge Christian Ellis, Joshua Steakelum, and Melanie Luperon for their inputs on the manuscript.
+This work is supported by the National Aeronautics and Space Administration (NASA) and SARP under Grant Number (\#). The authors would also like to acknowledge Christian Ellis, Joshua Steakelum, and Melanie Luperon for their inputs on the manuscript.
 
 
 \bibliographystyle{IEEEtran}
