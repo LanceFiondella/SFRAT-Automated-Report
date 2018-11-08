@@ -28,7 +28,6 @@ if(!require(gdata)) {install.packages("gdata", repos="http://cran.rstudio.com/")
 if(!require(ggplot2)) {install.packages("ggplot2", repos="http://cran.rstudio.com/");library(ggplot2)} #ggplot2 is used for crerating various plots
 if(!require(rootSolve)) {install.packages("rootSolve", repos="http://cran.rstudio.com/");library(rootSolve)} #rootSolve is used for finding a root of an equation
 if(!require(readxl)) {install.packages("readxl", repos="http://cran.rstudio.com/");library(readxl)} #
-if(!require(markdown)) {install.packages("readxl", repos="http://cran.rstudio.com/");library(markdown)} #
-if(!require(rmarkdown)) {install.packages("readxl", repos="http://cran.rstudio.com/");library(rmarkdown)} #
-if(!require(formatR)) {install.packages("readxl", repos="http://cran.rstudio.com/");library(formatR)} #
+if(!require(markdown)) {install.packages("markdown", repos="http://cran.rstudio.com/");library(markdown)} #
+if(!require(formatR)) {install.packages("formatR", repos="http://cran.rstudio.com/");library(formatR)} #
 
