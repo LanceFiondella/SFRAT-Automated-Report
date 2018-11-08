@@ -30,5 +30,3 @@ if(!require(rootSolve)) {install.packages("rootSolve", repos="http://cran.rstudi
 if(!require(readxl)) {install.packages("readxl", repos="http://cran.rstudio.com/");library(readxl)} #
 if(!require(markdown)) {install.packages("markdown", repos="http://cran.rstudio.com/");library(markdown)} #
 if(!require(formatR)) {install.packages("formatR", repos="http://cran.rstudio.com/");library(formatR)} #
-if(!require(pandoc)) {install.packages("pandoc", repos="http://cran.rstudio.com/");library(pandoc)} #
-
