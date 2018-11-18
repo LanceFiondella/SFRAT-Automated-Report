@@ -266,17 +266,16 @@ Figure~\ref{fig_SRT_tab4_table} shows the AIC and PSSE values for the five model
 
 
 \section{SFRAT report generation script}\label{sec:Script}
-This section discusses the usage of the automated SFRAT script. This script will automatically run the SFRAT based on user-defined variables inside of the script, and will then generate a PDF report of the exported data. Manually configuring the settings via the UI and then creating a report based on the tool's output may be tedious and unpleasant, so users may wish for something quicker and easier. Using the script, it becomes simple to repeatedly generate reader-friendly reports of reliability growth data. The report generation script is written in the R programming language, and uses its Markdown library to actually generate the report. To achieve this, two files are used, being \textbf{report-specifications.R} and
+This section discusses the usage of the automated SFRAT script. This script will run the SFRAT based on user-defined variables inside of the script, and will then generate a PDF report based on the SFRAT's output. Manually configuring the settings via the UI and then creating a report based on the tool's output may be tedious and unpleasant, so users may wish for something quicker and easier. Using the script, it becomes simple to repeatedly generate reader-friendly reports of reliability growth data. The report generation script is written in the R programming language, and uses the Markdown library to graphically generate the report. To achieve this, two files are used, being \textbf{report-specifications.R} and
 \textbf{SFRATReport.Rmd}. The \textbf{report-specifications.R} is used to configure the variables taken into account when generating the report, and the \textbf{SFRATReport.Rmd} Markdown file is used as a template when placing the tool's output into a readable PDF report.
 
 \subsection{Using the report generation script}\label{sec:ScriptRun}
-To run the main script using RStudio, launch RStudio and set its working directory to the location where the folder is saved via \textbf{Session} $\to$ \textbf{Set Working Directory}. Ensure that the required packages are installed. See \ref{sec:Documentation} for the list of packages. Open the file \textbf{report-specifications.R}. Each variable in this script represents some parameter in the UI for the SFRAT. Any setting found in the UI will be configurable inside this script. Below is a brief description of each parameter found in the script.
-  
+To run the main script using RStudio, launch RStudio and set its working directory to the location where the folder is saved via \textbf{Session} $\to$ \textbf{Set Working Directory}. Ensure that the required packages are installed. See the Documentation for the list of packages. In the file \textbf{report-specifications.R}, each variable represents some parameter in the UI for the SFRAT. Any setting found in the UI will be configurable inside this script. Below is a brief description of each parameter found in the script.
 \noindent Main script parameters:
     \begin{itemize}
     \item {\textbf{verbose\_report} - Enabling this setting will show verbose reports on the PDF report. It provides a brief description of the purpose of each figure.}
       \item {\textbf{datapath} - See "Select a failure data file" in Figure \ref{fig_Tab1_leftCol} - this denotes the location of the failure data file.}
-      \item {\textbf{sheetNumber} - This allows to choose which data set is operated on, given that the supplied file has more than one. This is the equivalent of "Choose Sheet" in the SFRAT's first tab.}
+      \item {\textbf{sheetNumber} - This allows the user to choose which data set is analyzed, given that the supplied file has more than one. This is the equivalent of "Choose Sheet" in the SFRAT's first tab.}
       \item {\textbf{colors} - This specifies the set of colors used in the report.}
     \end{itemize}
 
@@ -311,7 +310,7 @@ The generated reports will be stored in the \textit{Report} folder, which is loc
   \newline
   \textbf{SFRAT report\_dataName\_YYYY-MM-DD.pdf}
   
-The script may also be easily run via the command line. Assuming that all prerequisites are met, navigate to the script folder, run R and enter \textit{Rscript report-specifications.R} in the script directory.
+The script may also be easily run via the command line. Assuming that all prerequisites are met, navigate to the script folder, run R and enter \textit{source('report-specifications.R')}.
 
 \section{Illustrations}\label{sec:Ex}
 This section displays the example results based on the SYS1 example data~\cite{BookHoSRE}. The second example demonstrates the online assessment of the data using SYS1.
@@ -343,7 +342,14 @@ Figure~\ref{fig:SYS1Report} shows the initial view of the SFRAT report generated
 \label{fig:SYS1Report}
 \end{figure}
 
-When viewing the PDF, the left side of the report (as demonstrated in Figure~\ref{fig:SYS1Report}) will give a outline of the different sections of the report. This particular report is presented over $12$ pages, with each result using a separate page. With verbose reporting enabled, a brief description of each graph or table is also presented. In addition, the first page allows the user to specify the author, report name, date, and time. If not previously done, modify the first few lines in \textbf{SFRATReport.Rmd} inside the script folder and re-generate the report.
+When viewing the PDF, the left side of the report (as demonstrated in Figure~\ref{fig:SYS1Report}) will give a outline of the different sections of the report. This particular report is presented over $12$ pages, with each result using a separate page. With verbose reporting enabled, a brief description of each graph or table is also presented. See Figure \ref{fig:nonverbose} for an example of non-verbose reporting - opposite to what's seen in Figure \ref{fig:SYS1Report}. In addition, the first page allows the user to specify the author, report name, date, and time. If not previously done, modify the first few lines in \textbf{SFRATReport.Rmd} inside the script folder and re-generate the report.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=3.4in]{Figures/nonverbose}
+\caption{Example report page with verbose output disabled}
+\label{fig:nonverbose}
+\end{figure}
 
 To describe the report shortly, graphs for times between failures and failure intensity as a function of the testing time is displayed on pages $3$ and $4$ respectively. Similar plot and discussion for the running arithmetic average is included in the following page.
 
