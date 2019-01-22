@@ -3,7 +3,9 @@ title: 'Software Failure and Reliability Assessment Tool: Report'
 author: "Author Name"
 date: '`r format(Sys.time(), "%Y-%m-%d_%H:%M")`'
 output:
+  #word_document: default
   pdf_document: default
+  #html_document: default
 ---
   
 ```{r setup, include=FALSE}
