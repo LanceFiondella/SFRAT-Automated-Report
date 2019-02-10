@@ -1,6 +1,6 @@
 ############################### EDIT BELOW FOR SCRIPT PARAMETERS ############################### 
 
-verbose_report <- 1		#1 for verbose report, 2 for non-verbose
+verbose_report <- 1		#1 for verbose report, 0 for non-verbose
 
 #Specify the location to the input data file and specific sheet number
 filePath <- '/SFRAT/model_testing/model_data.xlsx'
